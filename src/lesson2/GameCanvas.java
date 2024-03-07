@@ -5,13 +5,21 @@ import java.awt.*;
 
 public class GameCanvas extends JPanel {
 
-    int x = 0;
+    long lastFrameTime;
+    MainCircles gameController;
 
-    //@Override
-    protected void painComponent(Graphics g) {
+    GameCanvas(MainCircles gameController) {
+        lastFrameTime = System.nanoTime();
+        this.gameController = gameController;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println("Paint component");
-        g.drawLine(x++,0,100,100);
+        long currentTime = System.nanoTime();
+        float deltaTime = (currentTime - lastFrameTime) * 0.000000001f;
+        lastFrameTime = currentTime;
+        gameController.onDrawFlame(this,g,deltaTime);
         try {
             Thread.sleep(16);
         } catch (InterruptedException e) {
@@ -19,4 +27,9 @@ public class GameCanvas extends JPanel {
         }
         repaint();
     }
+
+    public int getLeft() { return 0; }
+    public int getRight(){ return getWidth() - 1; }
+    public  int getTop() {return 0; }
+    public  int getBottom() {return getHeight() - 1; }
 }
