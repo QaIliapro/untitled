@@ -2,6 +2,8 @@ package lesson2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainCircles extends JFrame {
     private  static final int POS_X = 400;
@@ -9,7 +11,8 @@ public class MainCircles extends JFrame {
     private static final int WINDOW_WIDTH = 800;
     private static final int WIDOW_HEIGHT = 600;
 
-    Sprite[] sprites = new Sprite[10];
+    private Sprite[] sprites = new Sprite[1];
+    private int spritesCount;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -29,12 +32,34 @@ public class MainCircles extends JFrame {
         add(canvas);
         setTitle("Circles");
         setVisible(true);
+
+        canvas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.getButton() ==MouseEvent.BUTTON1)
+                    addSprite(new Ball(e.getX(), e.getY()));
+                else if (e.getButton() == MouseEvent.BUTTON3)
+                    removeSprite();
+
+            }
+        });
+        setVisible(true);
+    }
+    private void addSprite(Sprite s) {
+        if (spritesCount == sprites.length) {
+            Sprite[] temp = new Sprite[sprites.length * 2];
+            System.arraycopy(sprites, 0, temp, sprites.length);
+            sprites = temp;
+        }
+        sprites[spritesCount++] = s;
+    }
+
+    private void removeSprite() {
+        if (spritesCount > 1) spritesCount--;
     }
 
     private void iniApplication() {
-        for (int i = 0; i < sprites.length; i++) {
-            sprites[i] = new Ball();
-        }
+        addSprite(new Background());
     }
 
     void onDrawFlame(GameCanvas canvas, Graphics g,float deltaTime) {

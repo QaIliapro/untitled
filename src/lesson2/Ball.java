@@ -32,7 +32,7 @@ public class Ball  extends  Sprite{
             setTop(canvas.getTop());
             vY = -vY;
         }
-        if (getbottom() > canvas.getBottom()) {
+        if (getBottom() > canvas.getBottom()) {
             setBottom(canvas.getBottom());
             vY = -vY;
         }

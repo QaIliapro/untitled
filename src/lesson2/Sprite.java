@@ -26,7 +26,7 @@ public class Sprite {
     protected void setTop(float top) {
         y = top - halfHeight;
     }
-    protected float getbottom() {
+    protected float getBottom() {
         return y + halfHeight;
     }
     protected void setBottom(float bottom) {
