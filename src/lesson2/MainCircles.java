@@ -48,7 +48,7 @@ public class MainCircles extends JFrame {
     private void addSprite(Sprite s) {
         if (spritesCount == sprites.length) {
             Sprite[] temp = new Sprite[sprites.length * 2];
-            System.arraycopy(sprites, 0, temp, sprites.length);
+            System.arraycopy(sprites,0, temp,0, sprites.length);
             sprites = temp;
         }
         sprites[spritesCount++] = s;

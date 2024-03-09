@@ -2,7 +2,7 @@ package lesson2;
 
 import java.awt.*;
 
-public class Ball  extends  Sprite{
+public class Ball  extends  Sprite {
     private final Color color = new Color(
             (int)(Math.random() * 255),
             (int)(Math.random() * 255),
@@ -12,12 +12,20 @@ public class Ball  extends  Sprite{
     private float vY = (float)(100f + (Math.random() * 200f));
 
     Ball() {
-        halfHeight = 20 + (float)(Math.random() * 50f);
-        halfWidth = halfHeight * 1;
+        halfHeight = 20 + (float)(Math.random() * 200f);
+        halfWidth = halfHeight;
+    };
+
+    Ball(int x, int y) {
+        this();
+        this.x = x;
+        this.y = y;
     }
 
+
+
     @Override
-    void update(GameCanvas canvas, float deltaTime) {
+    public void update(GameCanvas canvas, float deltaTime) {
         x += vX * deltaTime;
         y += vY * deltaTime;
         if (getRight() > canvas.getRight()) {

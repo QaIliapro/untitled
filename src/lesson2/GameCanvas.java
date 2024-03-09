@@ -23,7 +23,7 @@ public class GameCanvas extends JPanel {
         try {
             Thread.sleep(16);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         repaint();
     }

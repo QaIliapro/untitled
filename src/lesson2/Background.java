@@ -10,7 +10,7 @@ public class Background extends  Sprite{
 
     @Override
     void update(GameCanvas canvas, float deltaTime) {
-        time +=deltaTime;
+        time += deltaTime;
         int red = Math.round(AMPLITUDE + AMPLITUDE * (float) Math.sin(time * 2f));
         int green = Math.round(AMPLITUDE + AMPLITUDE * (float) Math.sin(time * 3f));
         int blue = Math.round(AMPLITUDE + AMPLITUDE * (float) Math.sin(time));
